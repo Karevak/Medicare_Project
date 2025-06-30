@@ -27,3 +27,7 @@ class MessageSerializer(serializers.ModelSerializer):
     class Meta:
         model = Message
         fields = '__all__'
+class PushTokenSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = PushToken
+        fields = '__all__'

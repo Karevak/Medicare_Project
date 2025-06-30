@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { View, TextInput, Button, Text } from "react-native";
 import { login } from "../services/api";
+import { registerForPushNotificationsAsync } from '../services/notifications';
+import axios from 'axios';
 
 export default function LoginScreen({ navigation }) {
   const [username, setUsername] = useState("");
@@ -23,4 +25,13 @@ export default function LoginScreen({ navigation }) {
       <Button title="Connexion" onPress={handleLogin} />
     </View>
   );
+  useEffect(() => {
+    registerForPushNotificationsAsync().then(token => {
+      if (token) {
+        // Enregistre le token côté backend pour l'utilisateur connecté (à faire lors du login)
+        // axios.post(`${API_URL}save_push_token/`, {token, user: ...})
+      }
+    });
+  }, []);
+  // ...
 }
