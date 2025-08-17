@@ -4,3 +4,8 @@ djangorestframework-simplejwt
 mysqlclient
 django-cors-headers
 python-dotenv
+gunicorn
+whitenoise
+drf-spectacular
+dj-database-url
+requests

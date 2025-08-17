@@ -1,0 +1,34 @@
+[
+  {
+    "model": "core.user",
+    "pk": 1,
+    "fields": {
+      "username": "admin",
+      "password": "pbkdf2_sha256$600000$placeholder$hash",
+      "is_superuser": true,
+      "is_staff": true,
+      "role": "admin",
+      "email": "admin@example.com"
+    }
+  },
+  {
+    "model": "core.user",
+    "pk": 2,
+    "fields": {
+      "username": "pat1",
+      "password": "pbkdf2_sha256$600000$placeholder$hash",
+      "role": "patient",
+      "email": "pat1@example.com"
+    }
+  },
+  {
+    "model": "core.user",
+    "pk": 3,
+    "fields": {
+      "username": "soig1",
+      "password": "pbkdf2_sha256$600000$placeholder$hash",
+      "role": "soignant",
+      "email": "soig1@example.com"
+    }
+  }
+]

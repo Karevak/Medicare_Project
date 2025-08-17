@@ -1,0 +1,39 @@
+version: "3.9"
+
+services:
+  db:
+    image: mysql:8.0
+    container_name: medicare_mysql
+    restart: unless-stopped
+    environment:
+      MYSQL_DATABASE: medicare
+      MYSQL_USER: medicare
+      MYSQL_PASSWORD: medicarepwd
+      MYSQL_ROOT_PASSWORD: rootpwd
+    ports: 
+      - "3306:3306"
+    volumes:
+      - db_data:/var/lib/mysql
+
+  backend:
+    build: ./medicare_backend
+    container_name: medicare_backend
+    env_file: ./medicare_backend/.env
+    depends_on: 
+      - db
+    ports: 
+      - "8000:8000"
+    command: >
+      sh -c "
+        python manage.py migrate &&
+        python manage.py collectstatic --noinput &&
+        gunicorn medicare.wsgi:application --bind 0.0.0.0:8000"
+
+  adminer:
+    image: adminer
+    restart: unless-stopped
+    ports: 
+      - "8080:8080"
+
+volumes:
+  db_data:
